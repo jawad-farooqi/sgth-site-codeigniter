@@ -516,7 +516,7 @@ class News extends BaseController
             $fileTitles = $this->request->getPost('file_titles') ?? [];
             $files = $this->request->getFiles()['files'] ?? [];
 
-            $folderDate = date('Y-m-d');
+            $folderDate = date('Y');
             $uploadPath = 'uploads/news/' . $folderDate . '/' . $id;
 
             if (!empty($files)) {
