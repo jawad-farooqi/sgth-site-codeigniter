@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 02, 2025 at 01:15 PM
+-- Generation Time: Feb 24, 2026 at 08:39 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `sprh-site-db`
+-- Database: `sgth-site-ci-db`
 --
 
 -- --------------------------------------------------------
@@ -76,7 +76,21 @@ INSERT INTO `files` (`file_id`, `title`, `original_name`, `stored_path`, `mime_t
 (33, 'file 1', 'Ehtesham CV.docx', 'uploads/news/2025-07-27/35/1753566011_c9f65a43ab7d732dae47.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 67992, 1, '2025-07-26 21:40:11'),
 (34, 'file 2', 'Ehtesham FPSC - Lecturer Apply - F91F - 03-2025.pdf', 'uploads/news/2025-07-27/35/1753566011_3327522b2cbca954bfe5.pdf', 'application/pdf', 727545, 1, '2025-07-26 21:40:11'),
 (35, 'file good', 'Ehtesham.jpg', 'uploads/news/2025-07-27/36/1753566095_d4098e2302274fee3a0d.jpg', 'image/jpeg', 29148, 1, '2025-07-26 21:41:35'),
-(36, 'file 1', 'Ehtesham CV.docx', 'uploads/news/2025-07-30/38/1753816352_cff3f334a59c55df3541.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 67992, 1, '2025-07-29 19:12:32');
+(36, 'file 1', 'Ehtesham CV.docx', 'uploads/news/2025-07-30/38/1753816352_cff3f334a59c55df3541.docx', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 67992, 1, '2025-07-29 19:12:32'),
+(37, 'esta code', '1725436931-Esta Code 2024.pdf', 'uploads/news/2025-10-25/39/1761371322_a4aee66c283cbb360966.pdf', 'application/pdf', 5249760, 1, '2025-10-25 05:48:42'),
+(38, 'Notification for House job January 2026', 'NOTIFICATION FOR HOUSE JOB ENTRANCE EXAM JANUARY 2026.PDF', 'uploads/news/2026-01-28/40/1769576969_f9cd6454bb64e3aa6981.pdf', 'application/pdf', 490657, 1, '2026-01-28 05:09:29'),
+(39, 'spinghar university', 'Spinghar University.jpg', 'uploads/news/2026-02-03/41/1770190812_f2f815cb1b43ec14351c.jpg', 'image/jpeg', 458159, 1, '2026-02-04 07:40:12'),
+(40, 'hamza leave', 'Untitled picture.jpg', 'uploads/news/2026-02-03/41/1770190812_a97af4cdbbdc5750a510.jpg', 'image/jpeg', 515794, 1, '2026-02-04 07:40:12'),
+(41, 'Syllabus', 'Syllabus_for_SST_General_Bio_Chemistry_Physics_Maths_Stat__IT_11082025 (1).pdf', 'uploads/news/2026-02-24/42/1771902451_be443e9f07be768ac315.pdf', 'application/pdf', 450272, 1, '2026-02-24 03:07:31'),
+(42, 'Promotion', 'WhatsApp Image 2026-02-20 at 4.59.29 AM.jpeg', 'uploads/news/2026-02-24/42/1771902451_bedc4b529db4a0960783.jpeg', 'image/jpeg', 208394, 1, '2026-02-24 03:07:31'),
+(43, 'Internship certificates', 'Internship certificates.pdf', 'uploads/news/2026-02-24/43/1771904654_c6c7480adbef5f628088.pdf', 'application/pdf', 104360, 1, '2026-02-24 03:44:14'),
+(44, 'Intership certificate', 'doctor_212118_3efe58ad16c81fc33f217ac84ffcd7ba.jpg', 'uploads/news/2026-02-24/43/1771904654_d6251f04c9d77424262d.jpg', 'image/jpeg', 67924, 1, '2026-02-24 03:44:14'),
+(56, 'medicalallowance', '370714 - 2 - 18-02-26.jpg', 'uploads/news/2026-02-24/44/1771916554_98de63568435e42e3fc9.jpg', 'image/jpeg', 336182, 1, '2026-02-24 07:02:34'),
+(58, 'esta code', '370714 - 1 - 18-02-26.jpg', 'uploads/news/2026-02-24/44/1771917450_d4d943c6f3b53f1b30f2.jpg', 'image/jpeg', 336182, 1, '2026-02-24 07:17:30'),
+(59, 'Cert 1', '781123 - 23-02-26.jpg', 'uploads/news/2026-02-24/45/1771917554_0df043c0e93753f29df4.jpg', 'image/jpeg', 344838, 1, '2026-02-24 07:19:14'),
+(60, 'Cert 2', '887221 - 23-02-26.jpg', 'uploads/news/2026-02-24/45/1771917554_e6b23e8ef0ccc30d1754.jpg', 'image/jpeg', 341109, 1, '2026-02-24 07:19:15'),
+(61, 'Cert 3', '654433 - 23-02-2026.jpeg', 'uploads/news/2026-02-24/45/1771917555_9fb4515c29598b5e66ec.jpeg', 'image/jpeg', 151539, 1, '2026-02-24 07:19:15'),
+(62, 'Cert 4', '1064644 - 24-02-26.jpeg', 'uploads/news/2026-02-24/45/1771917856_148d86917bb24b0ec914.jpeg', 'image/jpeg', 47691, 1, '2026-02-24 07:24:16');
 
 -- --------------------------------------------------------
 
@@ -123,7 +137,14 @@ INSERT INTO `news` (`news_id`, `title`, `slug`, `content`, `author_id`, `status`
 (32, 'annouce 193', 'annouce-193-2025-07-27', '', 1, 'draft', '2025-07-26 21:32:00', '2025-07-26 21:34:46', '2025-07-26 21:34:46'),
 (35, 'make dir', 'make-dir-2025-07-27', '', 1, 'draft', '2025-07-26 21:38:00', '2025-07-26 21:40:11', '2025-07-26 21:40:11'),
 (36, 'hello world', 'hello-world-2025-07-27', '', 1, 'published', '2025-07-26 21:40:00', '2025-07-26 21:41:35', '2025-07-26 21:41:35'),
-(38, 'news announcement', 'news-announcement-2025-07-30', '', 1, 'published', '2025-07-29 19:08:00', '2025-07-29 19:12:32', '2025-07-29 19:12:32');
+(38, 'news announcement', 'news-announcement-2025-07-30', '', 1, 'published', '2025-07-29 19:08:00', '2025-07-29 19:12:32', '2025-07-29 19:12:32'),
+(39, 'news 1', 'news-1-2025-10-25', '', 1, 'draft', '2025-10-25 05:48:00', '2025-10-25 05:48:42', '2025-10-25 05:48:42'),
+(40, 'house job notification 2026', 'house-job-notification-2026-2026-01-28', '', 1, 'published', '2026-01-28 05:07:00', '2026-01-28 05:09:29', '2026-01-28 05:09:29'),
+(41, 'news 04-02-2026', 'news-04-02-2026-2026-02-03', 'testing 1', 1, 'draft', '2026-02-03 07:37:00', '2026-02-04 07:40:12', '2026-02-24 06:45:53'),
+(42, 'SST Syllabus', 'sst-syllabus-2026-02-24', 'SST ', 1, 'published', '2026-02-24 03:00:00', '2026-02-24 03:07:31', '2026-02-24 03:07:31'),
+(43, 'don\'t like the old titles', 'this-is-new-2026-02-24', 'don\'t like descriptions', 1, 'draft', '2026-02-18 03:43:00', '2026-02-24 03:44:14', '2026-02-24 06:46:40'),
+(44, 'news 9977', 'news-9977-2026-02-20', 'kj', 1, 'archived', '2026-02-20 07:02:00', '2026-02-24 07:02:34', '2026-02-24 07:39:19'),
+(45, 'News 765', 'news-765-2026-02-24', 'this is good one', 1, 'published', '2026-02-19 07:17:00', '2026-02-24 07:19:14', '2026-02-24 07:27:12');
 
 -- --------------------------------------------------------
 
@@ -132,6 +153,7 @@ INSERT INTO `news` (`news_id`, `title`, `slug`, `content`, `author_id`, `status`
 --
 
 CREATE TABLE `news_files` (
+  `id` int(11) NOT NULL,
   `news_id` int(11) NOT NULL,
   `file_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -140,41 +162,55 @@ CREATE TABLE `news_files` (
 -- Dumping data for table `news_files`
 --
 
-INSERT INTO `news_files` (`news_id`, `file_id`) VALUES
-(4, 3),
-(5, 4),
-(6, 5),
-(7, 6),
-(7, 7),
-(8, 8),
-(8, 9),
-(9, 10),
-(9, 11),
-(9, 12),
-(9, 13),
-(9, 14),
-(10, 15),
-(11, 16),
-(12, 17),
-(13, 18),
-(17, 19),
-(18, 20),
-(19, 21),
-(20, 22),
-(20, 23),
-(25, 24),
-(25, 25),
-(27, 26),
-(27, 27),
-(28, 28),
-(29, 29),
-(30, 30),
-(30, 31),
-(32, 32),
-(35, 33),
-(35, 34),
-(36, 35),
-(38, 36);
+INSERT INTO `news_files` (`id`, `news_id`, `file_id`) VALUES
+(1, 4, 3),
+(2, 5, 4),
+(3, 6, 5),
+(4, 7, 6),
+(5, 7, 7),
+(6, 8, 8),
+(7, 8, 9),
+(8, 9, 10),
+(9, 9, 11),
+(10, 9, 12),
+(11, 9, 13),
+(12, 9, 14),
+(13, 10, 15),
+(14, 11, 16),
+(15, 12, 17),
+(16, 13, 18),
+(17, 17, 19),
+(18, 18, 20),
+(19, 19, 21),
+(20, 20, 22),
+(21, 20, 23),
+(22, 25, 24),
+(23, 25, 25),
+(24, 27, 26),
+(25, 27, 27),
+(26, 28, 28),
+(27, 29, 29),
+(28, 30, 30),
+(29, 30, 31),
+(30, 32, 32),
+(31, 35, 33),
+(32, 35, 34),
+(33, 36, 35),
+(34, 38, 36),
+(35, 39, 37),
+(36, 40, 38),
+(37, 41, 39),
+(38, 41, 40),
+(39, 42, 41),
+(40, 42, 42),
+(41, 43, 43),
+(42, 43, 44),
+(43, 44, 56),
+(44, 44, 58),
+(45, 45, 59),
+(46, 45, 60),
+(47, 45, 61),
+(48, 45, 62);
 
 -- --------------------------------------------------------
 
@@ -252,7 +288,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_id`, `name`, `username`, `password`, `email`, `is_active`, `created_at`, `updated_at`) VALUES
 (1, 'Saleem', 'admin', '$2y$10$s57FpTgzp9dWbAXD.O.PpelwfgFjlHIupg.wyqkfmm2gD5vnNGvMi', 'admin@gmail.com', 1, '2025-02-19 04:50:28', '2025-02-19 04:50:28'),
 (3, 'Kaleem Khan', 'admin3', '$2y$10$cNA2CWI7YXJb.i54MxCUWO3EZ9rChFYhhOj5Av6q8vv3IppwUcExS', 'nothing3@gmail.com', 1, '2025-03-13 08:26:58', '2025-03-13 08:26:58'),
-(4, 'Muhammad Khan', 'muhammadkhan', '$2y$10$mSW0oDEHxlkFXfg4kMJSb.TwtIJQzF51THPqZXNrDz2oLgWLHHasm', 'muhammad.khan@gmail.com', 1, '2025-06-28 18:38:52', '2025-06-28 18:38:52');
+(4, 'Muhammad Khan', 'muhammadkhan', '$2y$10$mSW0oDEHxlkFXfg4kMJSb.TwtIJQzF51THPqZXNrDz2oLgWLHHasm', 'muhammad.khan@gmail.com', 1, '2025-06-28 18:38:52', '2025-06-28 18:38:52'),
+(5, 'hafeez', 'hafeez', '$2y$10$yavMVi9lY2zK3tL5bjRwbOptPerBfWPDzscpf/7icCVFXsVP4jIVu', 'hafeez@gmail.com', 1, '2026-01-28 05:07:03', '2026-01-28 05:07:03');
 
 -- --------------------------------------------------------
 
@@ -272,7 +309,8 @@ CREATE TABLE `user_roles` (
 INSERT INTO `user_roles` (`user_id`, `role_id`) VALUES
 (1, 1),
 (3, 2),
-(4, 1);
+(4, 1),
+(5, 2);
 
 --
 -- Indexes for dumped tables
@@ -297,7 +335,7 @@ ALTER TABLE `news`
 -- Indexes for table `news_files`
 --
 ALTER TABLE `news_files`
-  ADD PRIMARY KEY (`news_id`,`file_id`),
+  ADD PRIMARY KEY (`id`),
   ADD KEY `fk_file_id_idx` (`file_id`);
 
 --
@@ -346,13 +384,19 @@ ALTER TABLE `user_roles`
 -- AUTO_INCREMENT for table `files`
 --
 ALTER TABLE `files`
-  MODIFY `file_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `file_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+
+--
+-- AUTO_INCREMENT for table `news_files`
+--
+ALTER TABLE `news_files`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -370,7 +414,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -392,8 +436,7 @@ ALTER TABLE `news`
 -- Constraints for table `news_files`
 --
 ALTER TABLE `news_files`
-  ADD CONSTRAINT `fk_file_id` FOREIGN KEY (`file_id`) REFERENCES `files` (`file_id`),
-  ADD CONSTRAINT `fk_news_id` FOREIGN KEY (`news_id`) REFERENCES `news` (`news_id`);
+  ADD CONSTRAINT `fk_file_id` FOREIGN KEY (`file_id`) REFERENCES `files` (`file_id`);
 
 --
 -- Constraints for table `role_permissions`
