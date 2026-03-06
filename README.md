@@ -1,5 +1,5 @@
-# sprh
-Swat Psychiatry and Rehabilitation Hospital by using CodeIgniter v4
+# SGTH CodeIgniter
+Saidu Group of Teaching Hospitals, Swat by using CodeIgniter v4
 
 Tasks:
 
