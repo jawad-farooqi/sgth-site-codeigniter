@@ -69,7 +69,7 @@ class News extends BaseController
             }
 
             $size = $row['size'] ?? 0;
-            $size = formatFileSize($size);
+            $formated_size = formatFileSize($size);
 
             if (!empty($row['file_id'])) {
                 $newsWithFiles[$newsId]['files'][] = [
@@ -78,7 +78,7 @@ class News extends BaseController
                     'original_name' => $row['original_name'],
                     'stored_path'   => $row['stored_path'],
                     'mime_type'     => $row['mime_type'],
-                    'size'          => $size
+                    'size'          => $formated_size
                 ];
             }
         }
@@ -673,6 +673,8 @@ class News extends BaseController
             ->with('success', 'News and associated files deleted successfully.');
     }
 
+    // Already replaced with helper_function formatFileSize() in app/Helpers/app_helper.php
+    // This function is no longer needed in the controller since we are using a global helper function for formatting file sizes.
     // private function formatFileSize($bytes)
     // {
     //     if ($bytes >= 1073741824) {
