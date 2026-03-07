@@ -68,6 +68,9 @@ class News extends BaseController
                 ];
             }
 
+            $size = $row['size'] ?? 0;
+            $size = formatFileSize($size);
+
             if (!empty($row['file_id'])) {
                 $newsWithFiles[$newsId]['files'][] = [
                     'file_id'       => $row['file_id'],
@@ -75,7 +78,7 @@ class News extends BaseController
                     'original_name' => $row['original_name'],
                     'stored_path'   => $row['stored_path'],
                     'mime_type'     => $row['mime_type'],
-                    'size'          => $this->formatFileSize($row['size'])
+                    'size'          => $size
                 ];
             }
         }
@@ -670,19 +673,19 @@ class News extends BaseController
             ->with('success', 'News and associated files deleted successfully.');
     }
 
-    private function formatFileSize($bytes)
-    {
-        if ($bytes >= 1073741824) {
-            $size = number_format($bytes / 1073741824, 2) . ' GB';
-        } elseif ($bytes >= 1048576) {
-            $size = number_format($bytes / 1048576, 2) . ' MB';
-        } elseif ($bytes >= 1024) {
-            $size = number_format($bytes / 1024, 2) . ' KB';
-        } else {
-            $size = $bytes . ' B';
-        }
-        return $size;
-    }
+    // private function formatFileSize($bytes)
+    // {
+    //     if ($bytes >= 1073741824) {
+    //         $size = number_format($bytes / 1073741824, 2) . ' GB';
+    //     } elseif ($bytes >= 1048576) {
+    //         $size = number_format($bytes / 1048576, 2) . ' MB';
+    //     } elseif ($bytes >= 1024) {
+    //         $size = number_format($bytes / 1024, 2) . ' KB';
+    //     } else {
+    //         $size = $bytes . ' B';
+    //     }
+    //     return $size;
+    // }
 
     
 
