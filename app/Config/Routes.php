@@ -77,6 +77,15 @@ $routes->group('admin', ['filter' => 'AuthGuard'], function ($routes) {
     // 'Admin\News::viewFile/$1/$2'
     // );
 
+    // _________________________________________________________________________________________________________________________
+
+    // Event Management
+    $routes->get('event/create', 'Admin\Event::create', ['as' => 'create_event']);
+    $routes->post('event/store', 'Admin\Event::store', ['as' => 'store_event']);
+
+    // _________________________________________________________________________________________________________________________
+    
+
 });
 
 

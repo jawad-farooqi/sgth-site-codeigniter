@@ -52,6 +52,23 @@
                     </ul>
                 </li>
 
+                <!-- Event Dropdown -->
+                <li>
+                    <button type="button" class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg group hover:bg-gray-700" aria-controls="dropdown-event" data-collapse-toggle="dropdown-event">
+                        <i class="fas fa-newspaper w-5 h-5 text-gray-400 transition duration-75 group-hover:text-white"></i>
+                        <span class="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Event</span>
+                        <i class="fas fa-chevron-down w-3 h-3"></i>
+                    </button>
+                    <ul id="dropdown-event" class="hidden py-2 space-y-2">
+                        <li>
+                            <a href="<?= route_to('edit_event') ?>" class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Edit Event</a>
+                        </li>
+                        <li>
+                            <a href="<?= route_to('create_event') ?>" class="flex items-center w-full p-2 text-white transition duration-75 rounded-lg pl-11 group hover:bg-gray-700">Create Event</a>
+                        </li>
+                    </ul>
+                </li>
+
 
                 <!-- Users Dropdown -->
                 <?php if (session('user_role') === 'admin') { ?>

@@ -93,7 +93,7 @@ class News extends BaseController
     }
 
     public function create()
-    {
+    { 
         return view('admin/news/add_news');
     }
 
