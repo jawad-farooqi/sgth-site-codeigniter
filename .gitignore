@@ -71,6 +71,7 @@ php_errors.log
 #-------------------------
 
 /public/uploads/
+/public/images/events/
 
 
 
