@@ -57,6 +57,9 @@
 
         <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Upload Event Images</label>
+                <p class="text-xs text-gray-500 mb-2">
+                    Do not upload the thumbnail image again. Only upload additional event images.
+                </p>
             <input type="file" name="images[]" multiple required class="block w-full text-sm text-gray-900 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-blue-100 file:text-blue-700 hover:file:bg-blue-200">
         </div>
 
