@@ -17,6 +17,16 @@
         </div>
     <?php endif; ?>
 
+    <?php if(session()->getFlashdata('errors')): ?>
+        <div class="mt-6 text-red-600 font-medium text-center bg-red-100 p-3 rounded-lg">
+            <ul>
+                <?php foreach(session()->getFlashdata('errors') as $error): ?>
+                    <li><?= esc($error) ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
+
     <?php if(session()->getFlashdata('error')): ?>
         <div class="mt-6 text-red-600 font-medium text-center bg-red-100 p-3 rounded-lg">
             <?= session()->getFlashdata('error') ?>
@@ -33,11 +43,6 @@
         <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Event Description</label>
             <textarea name="description" rows="3" class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500"></textarea>
-        </div>
-
-        <div>
-            <label class="block text-sm font-medium text-gray-700 mb-1">Directory Name <span class="text-xs text-gray-500">(no spaces)</span></label>
-            <input type="text" name="folder_name" required class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
         </div>
 
         <div>

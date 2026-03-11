@@ -24,53 +24,90 @@ class Event extends BaseController
         return view('admin/gallery/create_event');
     }
 
-    // Handle form submission
     public function store()
     {
-        $db = \Config\Database::connect(); // Get DB connection for transaction
-        $request = \Config\Services::request();
+        $db = \Config\Database::connect();
+        $request = service('request');
 
-        $event_name = $request->getPost('event_name');
-        $description = $request->getPost('description');
-        $event_date = $request->getPost('event_date');
-        $folder_name = preg_replace("/[^a-zA-Z0-9_-]/", "", $request->getPost('folder_name'));
+        // ----------------------------
+        // 1. Validate Inputs & Files
+        // ----------------------------
+        $validation = \Config\Services::validation();
 
-        $upload_path = FCPATH . "images/events/" . $folder_name;
-        if (!is_dir($upload_path)) mkdir($upload_path, 0755, true);
+        $validation->setRules([
+            'event_name' => 'required|min_length[3]|max_length[255]',
+            'event_date' => 'required|valid_date[Y-m-d]',
+            'thumbnail' => 'uploaded[thumbnail]|is_image[thumbnail]|max_size[thumbnail,2048]',
+            'images.*' => 'is_image[images]|max_size[images,2048]',
+        ]);
 
-        $thumbnailFile = $this->request->getFile('thumbnail');
-        if (!$thumbnailFile->isValid()) {
-            return redirect()->back()->with('error', 'Thumbnail upload failed');
+        if (!$validation->withRequest($this->request)->run()) {
+            return redirect()->back()->withInput()->with('errors', $validation->getErrors());
         }
 
-        $thumbnailName = $thumbnailFile->getRandomName();
-        $thumbnailFile->move($upload_path, $thumbnailName);
-        $thumbnail_db_path = "/images/events/$folder_name/$thumbnailName";
+        $event_name  = $request->getPost('event_name');
+        $description = $request->getPost('description');
+        $event_date  = $request->getPost('event_date');
 
-        // Start transaction
+        // ----------------------------
+        // 2. Start Transaction
+        // ----------------------------
         $db->transStart();
 
         try {
-            // Insert event
+            // ----------------------------
+            // 3. Insert Event (without thumbnail)
+            // ----------------------------
             $eventData = [
                 'event_name' => $event_name,
                 'description' => $description,
-                'thumbnail' => $thumbnail_db_path,
-                'active_status' => 1,
                 'event_date' => $event_date,
+                'active_status' => 1,
+                'timestamp' => date('Y-m-d H:i:s')
             ];
 
-            $event_id = $this->eventModel->insert($eventData);
+            $this->eventModel->insert($eventData);
+            $event_id = $this->eventModel->insertID();
 
-            // Upload event images
-            $images = $this->request->getFiles();
+            // ----------------------------
+            // 4. Create Upload Folder
+            // ----------------------------
+            $current_year = date('Y');
+            $upload_path = FCPATH . "uploads/images/events/{$current_year}/{$event_id}";
+
+            if (!is_dir($upload_path)) {
+                mkdir($upload_path, 0755, true);
+            }
+
+            // ----------------------------
+            // 5. Upload Thumbnail
+            // ----------------------------
+            $thumbnailFile = $request->getFile('thumbnail');
+            $thumbnailName = $thumbnailFile->getRandomName();
+            $thumbnailFile->move($upload_path, $thumbnailName);
+
+            $thumbnail_db_path = "/uploads/images/events/{$current_year}/{$event_id}/{$thumbnailName}";
+
+            // Update event with thumbnail path
+            $this->eventModel->update($event_id, [
+                'thumbnail' => $thumbnail_db_path
+            ]);
+
+            // ----------------------------
+            // 6. Upload Gallery Images
+            // ----------------------------
+            $images = $request->getFiles();
+
             if (!empty($images['images'])) {
                 foreach ($images['images'] as $img) {
-                    if (!$img->isValid()) throw new \Exception('One of the images failed to upload.');
+                    if (!$img->isValid()) {
+                        throw new \Exception('One of the gallery images failed to upload.');
+                    }
 
                     $imgName = $img->getRandomName();
                     $img->move($upload_path, $imgName);
-                    $img_db_path = "/images/events/$folder_name/$imgName";
+
+                    $img_db_path = "/uploads/images/events/{$current_year}/{$event_id}/{$imgName}";
 
                     $this->eventImageModel->insert([
                         'image_name' => $event_name,
@@ -82,26 +119,28 @@ class Event extends BaseController
                 }
             }
 
-            // Complete transaction
+            // ----------------------------
+            // 7. Commit Transaction
+            // ----------------------------
             $db->transComplete();
 
             if ($db->transStatus() === false) {
-                // Transaction failed
-                return redirect()->back()->with('error', 'Event creation failed. Please try again.');
+                throw new \Exception('Transaction failed. Event not created.');
             }
 
             return redirect()->route('create_event')->with('success', 'Event created and images uploaded successfully!');
 
         } catch (\Exception $e) {
-            // Rollback transaction and remove any uploaded files
+            // Rollback transaction
             $db->transRollback();
-            @unlink($upload_path . "/" . $thumbnailName);
-            if (!empty($images['images'])) {
-                foreach ($images['images'] as $img) {
-                    @unlink($upload_path . "/" . $img->getName());
-                }
+
+            // Delete uploaded files if folder exists
+            if (isset($upload_path) && is_dir($upload_path)) {
+                array_map('unlink', glob("$upload_path/*"));
+                rmdir($upload_path);
             }
-            return redirect()->back()->with('error', 'Error: ' . $e->getMessage());
+
+            return redirect()->back()->withInput()->with('error', $e->getMessage());
         }
     }
 }
