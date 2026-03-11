@@ -42,7 +42,7 @@
 
         <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Event Date</label>
-            <input type="date" name="event_date" value="<?= date('Y-m-d') ?>" required class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
+            <input type="date" name="event_date" value="<?= set_value('event_date', date('Y-m-d')) ?>" required class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500">
         </div>
 
         <div>

@@ -13,7 +13,7 @@ class EventModel extends Model
         'description',
         'thumbnail',
         'active_status',
-        'timestamp'
+        'event_date'
     ];
 
     // Automatically handle timestamps

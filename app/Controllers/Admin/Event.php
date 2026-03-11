@@ -27,7 +27,6 @@ class Event extends BaseController
     // Handle form submission
     public function store()
     {
-        helper(['form', 'url']);
         $db = \Config\Database::connect(); // Get DB connection for transaction
         $request = \Config\Services::request();
 
@@ -58,8 +57,9 @@ class Event extends BaseController
                 'description' => $description,
                 'thumbnail' => $thumbnail_db_path,
                 'active_status' => 1,
-                'timestamp' => $event_date
+                'event_date' => $event_date,
             ];
+
             $event_id = $this->eventModel->insert($eventData);
 
             // Upload event images
