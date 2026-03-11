@@ -18,6 +18,19 @@ class Event extends BaseController
         $this->eventImageModel = new EventImageModel();
     }
 
+    // Display all events with edit forms
+    public function index()
+    {
+        $events = $this->eventModel->orderBy('event_date', 'DESC')->findAll();
+        return view('admin/gallery/view_events', ['events' => $events]);
+    }
+
+    // Get all images for a given event
+    public function getEventImages($event_id)
+    {
+        return $this->eventImageModel->where('event_id', $event_id)->findAll();
+    }
+
     // Show the create event form
     public function create()
     {
