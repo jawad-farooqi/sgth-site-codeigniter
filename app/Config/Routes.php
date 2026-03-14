@@ -80,12 +80,13 @@ $routes->group('admin', ['filter' => 'AuthGuard'], function ($routes) {
     // _________________________________________________________________________________________________________________________
 
     // Event Management
-    $routes->get('event/create', 'Admin\Event::create', ['as' => 'create_event']);
-    $routes->post('event/store', 'Admin\Event::store', ['as' => 'store_event']);
+    $routes->get('events/create', 'Admin\Event::create', ['as' => 'create_event']);
+    $routes->post('events/store', 'Admin\Event::store', ['as' => 'store_event']);
 
-    $routes->get('events', 'EventController::index'); // view all events
-    $routes->post('events/update/(:num)', 'EventController::update/$1'); // update event
-    $routes->post('events/delete_image/(:num)', 'EventController::deleteImage/$1'); // delete gallery image
+    $routes->get('events', 'Admin\Event::index', ['as' => 'view_events']); // view all events
+    $routes->get('events/edit/(:num)','Admin\Event::edit/$1', ['as' => 'edit_event']); // edit event form
+    $routes->post('events/update/(:num)','Admin\Event::update/$1', ['as' => 'update_event']); // update event
+    $routes->get('events/delete/(:num)','Admin\Event::delete/$1', ['as' => 'delete_event']); // delete event
 
     // _________________________________________________________________________________________________________________________
     

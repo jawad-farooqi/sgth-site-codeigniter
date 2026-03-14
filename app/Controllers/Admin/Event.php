@@ -156,4 +156,107 @@ class Event extends BaseController
             return redirect()->back()->withInput()->with('error', $e->getMessage());
         }
     }
+
+
+    public function edit($event_id)
+    {
+        $event = $this->eventModel->find($event_id);
+
+        return view('admin/gallery/edit_event', $event);
+    }
+
+
+    public function update($event_id)
+    {
+        $request = service('request');
+
+        $data = [
+
+            'event_name' => $request->getPost('event_name'),
+            'event_date' => $request->getPost('event_date'),
+            'active_status' => $request->getPost('active_status'),
+            'timestamp' => date('Y-m-d H:i:s')
+
+        ];
+
+        $this->eventModel->update($event_id, $data);
+
+        return redirect()->to('/events/view')->with('success','Event Updated');
+    }
+
+    public function delete($event_id)
+    {
+        $db = \Config\Database::connect();
+
+        $db->transStart();
+
+        try{
+
+            $event = $this->eventModel->find($event_id);
+
+            if(!$event){
+                throw new \Exception("Event not found");
+            }
+
+            // -----------------------
+            // Delete Gallery Images
+            // -----------------------
+
+            $images = $this->eventImageModel
+            ->where('event_id',$event_id)
+            ->findAll();
+
+            foreach($images as $img){
+
+                $file = FCPATH . $img['image_url'];
+
+                if(file_exists($file)){
+                    unlink($file);
+                }
+
+            }
+
+            // -----------------------
+            // Delete Thumbnail
+            // -----------------------
+
+            $thumbnail = FCPATH . $event['thumbnail'];
+
+            if(file_exists($thumbnail)){
+                unlink($thumbnail);
+            }
+
+            // -----------------------
+            // Delete Folder
+            // -----------------------
+
+            $folder = dirname($thumbnail);
+
+            if(is_dir($folder)){
+                array_map('unlink', glob("$folder/*"));
+                rmdir($folder);
+            }
+
+            // -----------------------
+            // Delete DB Records
+            // -----------------------
+
+            $this->eventImageModel
+            ->where('event_id',$event_id)
+            ->delete();
+
+            $this->eventModel->delete($event_id);
+
+            $db->transComplete();
+
+            return redirect()->back()->with('success','Event deleted');
+
+        }
+        catch(\Exception $e){
+
+            $db->transRollback();
+
+            return redirect()->back()->with('error',$e->getMessage());
+        }
+    }
 }
